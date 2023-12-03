@@ -1,12 +1,23 @@
+// import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, Pressable, Alert, TextInput} from 'react-native';
+import DataInputForm from './app/DataInputForm';
+
+import { rootStore, StoreProvider } from "./app/store/index";
 
 export default function App() {
+  const handleButtonPress = () => Alert.alert("Hello", 'message', [
+    {text : "Yes", onPress: () => console.log('test')},
+    {text: "no"}
+  ])
+
+  const handleButtonPressPrompt = () => Alert.prompt('test', 'test', text => console.log(text))
   return (
+    <StoreProvider value={rootStore}>
     <SafeAreaView style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <DataInputForm/>
     </SafeAreaView>
+    </StoreProvider>
   );
 }
 
